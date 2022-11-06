@@ -12,6 +12,7 @@
         <module>auth-service</module>
         <module>post-service</module>
         <module>comment-service</module>
+        <module>discovery-server</module>
     </modules>
     <groupId>com.akshayan</groupId>
     <packaging>pom</packaging>
@@ -24,6 +25,8 @@
         <java.version>17</java.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.lombok.version>1.18.20</org.lombok.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -43,6 +46,13 @@
                 <groupId>org.testcontainers</groupId>
                 <artifactId>testcontainers-bom</artifactId>
                 <version>1.16.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
