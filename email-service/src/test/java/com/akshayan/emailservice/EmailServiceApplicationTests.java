@@ -1,4 +1,4 @@
-package com.example.emailservice;
+package com.akshayan.emailservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
