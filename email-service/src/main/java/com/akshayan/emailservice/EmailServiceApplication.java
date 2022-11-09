@@ -31,6 +31,5 @@ public class EmailServiceApplication {
                         "please click on the below url to activate your account : " +
                         "http://localhost:8080/api/auth/accountVerification/" + activateAccountEvent.getToken());
         mailService.sendMail(notificationEmail);
-
     }
 }

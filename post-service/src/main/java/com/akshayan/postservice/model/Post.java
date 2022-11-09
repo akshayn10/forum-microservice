@@ -24,14 +24,12 @@ public class Post {
     @NotBlank(message = "Post Name cannot be empty or Null")
     private String postName;
     @Nullable
-    private String url;
-    @Nullable
     @Lob
     private String description;
     private Integer voteCount = 0;
     private Long userId;
     private Instant createdDate;
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "categoryId", referencedColumnName = "id")
     private Category category;
 }

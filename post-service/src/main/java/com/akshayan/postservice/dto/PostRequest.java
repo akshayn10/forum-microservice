@@ -11,6 +11,5 @@ public class PostRequest {
     private Long postId;
     private String categoryName;
     private String postName;
-    private String url;
     private String description;
 }

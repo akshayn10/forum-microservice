@@ -45,7 +45,6 @@ public class PostService {
                 .orElseThrow(() -> new CategoryNotFoundException(postRequest.getCategoryName()));
         Post post = new Post();
         post.setPostName(postRequest.getPostName());
-        post.setUrl(postRequest.getUrl());
         post.setDescription(postRequest.getDescription());
         post.setCategory(category);
         post.setCreatedDate(Instant.now());
@@ -72,21 +71,23 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostResponse> getAllPosts(String token) {
+
+        System.out.println(postRepository.findAll());
         return  postToPostResponse(postRepository.findAll(),token);
     }
     private List<PostResponse> postToPostResponse(List<Post> posts,String token) {
-        PostResponse postResponse = new PostResponse();
-        return posts.stream().map(p->{
-            return getPostResponse(token, postResponse, p);
+        return posts.stream().map(post -> {
+            PostResponse postResponse = new PostResponse();
+            return getPostResponse(token, postResponse, post);
         }).collect(toList());
     }
 
     private PostResponse getPostResponse(String token, PostResponse postResponse, Post p) {
         postResponse.setPostName(p.getPostName());
-        postResponse.setUrl(p.getUrl());
         postResponse.setDescription(p.getDescription());
         postResponse.setCategoryName(p.getCategory().getName());
         postResponse.setId(p.getPostId());
+        postResponse.setVoteCount(p.getVoteCount());
         String userName= webClientBuilder.build().get().uri(AUTH_SERVICE_URL+"username-by-userid/"+p.getUserId())
                 .retrieve()
                 .bodyToMono(String.class).block();

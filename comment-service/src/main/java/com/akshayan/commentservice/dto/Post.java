@@ -17,8 +17,6 @@ public class Post {
     @NotBlank(message = "Post Name cannot be empty or Null")
     private String postName;
     @Nullable
-    private String url;
-    @Nullable
     private String description;
     private Integer voteCount = 0;
     private Long userId;

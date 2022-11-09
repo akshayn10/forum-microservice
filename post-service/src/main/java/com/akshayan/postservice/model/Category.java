@@ -26,8 +26,6 @@ public class Category {
     private String name;
     @NotBlank(message = "Description is required")
     private String description;
-    @OneToMany(fetch = LAZY)
-    private List<Post> posts;
     private Instant createdDate;
     private Long userId;
 }

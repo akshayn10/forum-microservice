@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Instant;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -15,7 +16,6 @@ import static java.util.stream.Collectors.toList;
 @Service
 @AllArgsConstructor
 public class CommentService {
-    private static final String POST_URL = "";
     private static final String AUTH_SERVICE_URL = "http://auth-service/api/auth/";
     private final WebClient.Builder webClientBuilder;
 
@@ -34,7 +34,7 @@ public class CommentService {
         comment.setPostId(commentsDto.getPostId());
         comment.setText(commentsDto.getText());
         comment.setUserId(userId);
-        comment.setCreatedDate(commentsDto.getCreatedDate());
+        comment.setCreatedDate(Instant.now());
         commentRepository.save(comment);
 
 //        String message = mailContentBuilder.build(post.getForumUser().getUsername() + " posted a comment on your post." + POST_URL);
